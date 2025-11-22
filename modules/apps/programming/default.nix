@@ -29,7 +29,7 @@ in {
             bat
             btop
             btrfs-progs
-            du-dust
+            dust
             dua
             fd
             fzf

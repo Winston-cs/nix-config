@@ -117,12 +117,12 @@ in {
       };
           
       packages = with pkgs; [
-        ubuntu_font_family
+        ubuntu-classic
         # Persian Font
         vazir-fonts
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         liberation_ttf
         nerd-fonts.fira-code
         nerd-fonts.droid-sans-mono
