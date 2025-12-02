@@ -25,6 +25,7 @@
 
             gaming = {
                 minecraft.enable = true;
+                lunar.enable = true;
                 hsr.enable = true;
                 steam.enable = true;
             };
