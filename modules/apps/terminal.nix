@@ -15,6 +15,10 @@ in {
             };
             extraConfig = ''
               background_opacity 0.85
+              font_family      JetBrainsMono Nerd Font
+              bold_font        JetBrainsMono Nerd Font Bold
+              italic_font      JetBrainsMono Nerd Font Italic
+              bold_italic_font JetBrainsMono Nerd Font Bold Italic
             '';
           };
     };

@@ -51,6 +51,10 @@ in {
               };
             };
           };
+
+          programs.zed-editor = {
+              enable = true;
+          };
         }; 
 
         # nixvim config
@@ -58,5 +62,6 @@ in {
             inputs.nixvim.packages.${pkgs.system}.code
             inputs.nixvim.packages.${pkgs.system}.writer
         ];
+
     };
 }

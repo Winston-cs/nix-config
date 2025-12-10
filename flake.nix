@@ -15,6 +15,7 @@
             }; 
         globalModules = [ 
             stylix.nixosModules.stylix
+            determinate.nixosModules.default
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -52,7 +53,6 @@
     # ignore this bottom part, this just adds in all scrips so they can be used.
     } // (pkgs "x86_64-linux").callPackage ./utils/app-maker.nix { folder = ./scripts; };
 
-
     inputs = {
         copyparty.url = "github:9001/copyparty";
         determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -64,7 +64,6 @@
         nixos-hardware.url = "github:Nixos/nixos-hardware/master";
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nixvim.url = "github:blank2121/nixvim";
-        polymc.url = "github:PolyMC/PolyMC";
         stylix.url = "github:danth/stylix";
         zen-browser.inputs.nixpkgs.follows = "nixpkgs";
         zen-browser.url = "github:youwen5/zen-browser-flake";

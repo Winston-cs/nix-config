@@ -31,6 +31,7 @@ in {
             btrfs-progs
             dust
             dua
+            elan
             fd
             fzf
             gcc

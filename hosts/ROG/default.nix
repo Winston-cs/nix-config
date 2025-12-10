@@ -54,6 +54,6 @@
 
         # info from flake.nix is enough to create user
 
-        style.rose-pine.enable = true;
+        style = "kanagawa";
     };
 }
