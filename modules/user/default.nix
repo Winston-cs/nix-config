@@ -8,6 +8,7 @@
           "networkmanager"
           "wheel"
           "audio"
+          "storage"
         ];
         shell = pkgs.zsh;
     };

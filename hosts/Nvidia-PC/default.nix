@@ -15,8 +15,7 @@
         };   
 
         desktops = {
-            plasma.enable = true;
-
+            cosmic.enable = true;
         };
 
         apps = {
@@ -25,8 +24,9 @@
 
             gaming = {
                 minecraft.enable = true;
-                hsr.enable = true;
+                hsr.enable = false;
                 steam.enable = true;
+                lunar.enable = true;
             };
 
             discord.enable = true;

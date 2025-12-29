@@ -72,7 +72,6 @@ in {
             # lsp servers
             nil
             svelte-language-server
-            vscode
             superhtml
             vscode-css-languageserver
             typescript-language-server
