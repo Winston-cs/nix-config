@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
     imports = [
         ./cosmic.nix
@@ -8,4 +8,12 @@
         ./components
         ./plasma.nix
     ];
+
+    xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-gtk
+            xdg-desktop-portal-wlr
+        ];
+    };
 }

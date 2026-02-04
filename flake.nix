@@ -54,6 +54,10 @@
     } // (pkgs "x86_64-linux").callPackage ./utils/app-maker.nix { folder = ./scripts; };
 
     inputs = {
+        # to implement
+        flake-parts.url = "github:hercules-ci/flake-parts";
+        nix-config-modules.url = "github:chadac/nix-config-modules";
+
         copyparty.url = "github:9001/copyparty";
         determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
         home-manager = {

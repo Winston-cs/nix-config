@@ -37,10 +37,11 @@
 
             # gaming.{option}.enable = false;
 
-            anki.enable = true;
+            academic.enable = true;
+            anki.enable = false;
             discord.enable = true;
             email.enable = true;
-            godot.enable = true;
+            godot.enable = false;
             krita.enable = true;
             libre.enable = true;
             mpv.enable = true;
