@@ -1,75 +1,42 @@
 {
     description = "the configuration of my machines.";
 
-    outputs = inputs: with inputs; let
-        pkgs = system: import nixpkgs {
-                inherit system;
-                config = { 
-                    allowUnfree = true; allowBroken = true; allowUnsupportedSystem = true;
-                };
-                nix.package = pkgs.nixVersions.unstable;
-                nix.settings.experimental-features = "nix-command flakes";
-                overlays = [
-                    niri.overlays.niri copyparty.overlays.default
-                ];
-            }; 
-        globalModules = [ 
-            stylix.nixosModules.stylix
-            determinate.nixosModules.default
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager = { backupFileExtension = "backup"; };
+    outputs = { flake-parts, determinate, stylix, ... } @ inputs: flake-parts.lib.mkFlake { inherit inputs; } {
+        
+        imports = [
+            (inputs.import-tree ./hosts)
+            (inputs.import-tree ./modules)
+            inputs.nix-config-modules.flakeModule
+        ];
+
+        # please ignore this. it throws an error if I don't define homeApps here. its weird...
+        nix-config.homeApps = [
+            {
+                tags = [ "laptop" ];
+                packages = [ "hello" ];
             }
         ];
-    in { 
-        nixosConfigurations = {
-            ROG = nixpkgs.lib.nixosSystem {
-                pkgs = (pkgs "x86_64-linux");
-                specialArgs = { inherit inputs; 
-                                username = "winston"; 
-                                hostname = "ROG"; };
 
-                modules = [
-                    ./hosts/ROG
-                    nixos-hardware.nixosModules.asus-zephyrus-ga402x-amdgpu
-                    copyparty.nixosModules.default
-                    niri.nixosModules.niri
-                ] ++ globalModules;
-            };
-
-            Nvidia-PC = nixpkgs.lib.nixosSystem {
-                pkgs = (pkgs "x86_64-linux");
-                specialArgs = { inherit inputs; 
-                                username = "winston"; 
-                                hostname = "Nvidia-PC"; };
-
-                modules = [
-                    ./hosts/Nvidia-PC
-                ] ++ globalModules;
-            };
-        };
-
-    # ignore this bottom part, this just adds in all scrips so they can be used.
-    } // (pkgs "x86_64-linux").callPackage ./utils/app-maker.nix { folder = ./scripts; };
-
+        systems = [ "x86_64-linux" "aarch64-darwin" "aarch64-linux" ];
+    };
+    
     inputs = {
-        # to implement
+
+        determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+        home-manager.url = "github:nix-community/home-manager";
         flake-parts.url = "github:hercules-ci/flake-parts";
+        import-tree.url = "github:vic/import-tree";
         nix-config-modules.url = "github:chadac/nix-config-modules";
+        nixos-hardware.url = "github:Nixos/nixos-hardware/master";
 
         copyparty.url = "github:9001/copyparty";
-        determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-        home-manager = {
-            url = "github:nix-community/home-manager/master";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         niri.url = "github:sodiboo/niri-flake";
-        nixos-hardware.url = "github:Nixos/nixos-hardware/master";
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nixvim.url = "github:blank2121/nixvim";
         stylix.url = "github:danth/stylix";
+        xremap-flake.url = "github:xremap/nix-flake";
         zen-browser.inputs.nixpkgs.follows = "nixpkgs";
-        zen-browser.url = "github:youwen5/zen-browser-flake";
+        zen-browser.inputs.home-manager.follows = "home-manager";
+        zen-browser.url = "github:0xc000022070/zen-browser-flake";
     };
 }

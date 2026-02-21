@@ -1,0 +1,148 @@
+{ ... }: {
+  nix-config.defaultTags = {
+    dev = false;
+  };
+
+  nix-config.apps = {
+    gui-code = {
+      tags = [ "dev" ];
+
+      home = { pkgs, host, ... }: {
+        programs = {
+          carapace = {
+            enable = true;
+            enableZshIntegration = true;
+          };
+          eza = {
+            enable = true;
+            icons = "auto";
+            enableZshIntegration = true;
+          };
+          fzf = {
+            enable = true;
+            enableZshIntegration = true;
+          };
+          git.enable = true;
+          helix = {
+              enable = true; 
+              settings = {
+                  editor = {
+                      line-number = "relative";
+                  };
+                  keys.normal = {
+                      space.space = "file_picker";
+                      esc = [
+                          "collapse_selection"
+                          "keep_primary_selection"
+                      ];
+                  };
+              };
+              extraPackages = with pkgs; [
+                  rust-analyzer
+                  marksman
+                  nil
+                  nixd
+                  svelte-language-server
+                  superhtml
+                  vscode-css-languageserver
+                  typescript-language-server
+              ];
+          };
+          jujutsu = {
+            enable = true;
+            settings = {
+              ui = {
+                default-command = ["log" "--no-pager"];
+                diff-formatter = "${pkgs.delta}/bin/delta";
+              };
+              merge-tools.delta-diff-args = ["$left" "$right"];
+              user.name = host.username;
+              user.email = host.email;
+              snapshot.max-new-file-size = "10MiB";
+            };
+          };
+          kitty = {
+            enable = true;
+            settings = {
+              enable_audio_bell = false;
+            };
+            extraConfig = ''
+              background_opacity 0.85
+              font_family      JetBrainsMono Nerd Font
+              bold_font        JetBrainsMono Nerd Font Bold
+              italic_font      JetBrainsMono Nerd Font Italic
+              bold_italic_font JetBrainsMono Nerd Font Bold Italic
+            '';
+          };
+          lazygit.enable = true;
+          ripgrep.enable = true;
+          starship = {
+            enable = true;
+            enableZshIntegration = true;
+          };
+          zed-editor.enable = true;
+          zoxide = {
+            enable = true;
+            enableZshIntegration = true;
+          };
+        };
+      };
+    };
+  };
+
+
+  nix-config.homeApps = [
+    {
+      tags = [ "dev" ];
+      packages = [
+            "jjui"
+            "jj-fzf"
+            "godot"
+            "bacon"
+            "bat"
+            "btop"
+            "btrfs-progs"
+            "dust"
+            "dua"
+            "elan"
+            "fd"
+            "fzf"
+            "gcc"
+            "ghc"
+            "glow"
+            "gnumake"
+            "gnupg"
+            "gum"
+            # "haskellPackages.cabal-install"
+            # "haskellPackages.haskell-language-server"
+            # "haskellPackages.stack"
+            "hplip"
+            "jq"
+            "julia"
+
+            "mprocs"
+            "nix-output-monitor"
+            "nmap"
+            "nodejs_20"
+            "openjdk"
+            "openssl_3"
+            "pandoc"
+            "pango"
+            "ripgrep-all"
+            "texliveFull"
+            "trash-cli"
+            "typst"
+            "typst-live"
+            "vim"
+            "wget"
+            "which"
+            
+            "cargo"
+            "clippy"
+            "rustfmt"
+            "rust-analyzer"
+            "rustc"
+      ];
+    }
+  ];
+}
