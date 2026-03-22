@@ -28,7 +28,15 @@
         import-tree.url = "github:vic/import-tree";
         nix-config-modules.url = "github:chadac/nix-config-modules";
         nixos-hardware.url = "github:Nixos/nixos-hardware/master";
-
+        noctalia = {
+          url = "github:noctalia-dev/noctalia-shell";
+          inputs.nixpkgs.follows = "nixpkgs";
+          inputs.noctalia-qs.follows = "noctalia-qs";
+        };
+        noctalia-qs = {
+          url = "github:noctalia-dev/noctalia-qs";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
         copyparty.url = "github:9001/copyparty";
         niri.url = "github:sodiboo/niri-flake";
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

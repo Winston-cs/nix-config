@@ -10,7 +10,6 @@
       packages = [
         "aria2"
         "cage"
-        "swww"
         "wayland-utils"
         "wl-clipboard"
         "xwayland-satellite-unstable"
@@ -21,6 +20,7 @@
   nix-config.modules.home-manager = [
     inputs.niri.homeModules.niri
     inputs.vicinae.homeManagerModules.default
+    inputs.noctalia.homeModules.default
   ];
   
   nix-config.apps.niri = {
@@ -35,7 +35,7 @@
       services.displayManager.ly.enable = true;
     };
 
-    home = { pkgs, host, ... }: {
+    home = { pkgs, lib, ... }: {
       services.vicinae = {
         enable = true;
         systemd = {
@@ -47,16 +47,22 @@
         };
       };
 
-      services.swww.enable = true;
+      programs.noctalia-shell = {
+        enable = true;
+        settings = lib.mkForce (builtins.fromJSON
+          (builtins.readFile ./components/noctalia-niri.json)).settings;
+      };
+
       programs.niri = {
               package = pkgs.niri-stable;
               settings = {
                   environment."NIXOS_OZONE_WL" = "1";
                   outputs."eDP-1".scale = 1.5;
+
                   spawn-at-startup = [
-                    { argv = [ "swww-daemon" ]; }
-                    { argv = [ "waybar" ]; }
+                    { argv = [ "noctalia-shell" ]; }
                   ];
+
                   input = {
                       keyboard.xkb = {
                           layout = "us,es";
@@ -100,9 +106,7 @@
                   in
                   {
                       "${mod}+F".action.fullscreen-window = {};
-                      "${mod}+M".action.spawn = [ "${pkgs.swaynotificationcenter}/bin/swaync-client" "-t" ];
                       "${mod}+Return".action.spawn = "${pkgs.kitty}/bin/kitty";
-                      "${mod}+Shift+E".action.spawn = "${pkgs.wlogout}/bin/wlogout";
                       "${mod}+Shift+Q".action.close-window = {};
                       "${mod}+Space".action.spawn = [ "${pkgs.vicinae}/bin/vicinae" "open" ];
                       "${mod}+V".action.toggle-window-floating = {};
