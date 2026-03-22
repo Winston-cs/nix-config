@@ -8,7 +8,7 @@ This file has the **academic** tag. Enabling it installs:
 - Obsidian.md
 - Zotero
 - Thunderbird
-- LibreOffice
+- OnlyOffice
 - Zoom.us
 
 ## Dev.nix

@@ -8,6 +8,7 @@
     {
       tags = [ "niri" ];
       packages = [
+        "aria2"
         "cage"
         "swww"
         "wayland-utils"
@@ -17,7 +18,10 @@
     }
   ];
 
-  nix-config.modules.home-manager = [ inputs.niri.homeModules.niri ];
+  nix-config.modules.home-manager = [
+    inputs.niri.homeModules.niri
+    inputs.vicinae.homeManagerModules.default
+  ];
   
   nix-config.apps.niri = {
     tags = [ "niri" ];
@@ -32,6 +36,17 @@
     };
 
     home = { pkgs, host, ... }: {
+      services.vicinae = {
+        enable = true;
+        systemd = {
+          enable = true; # default: false
+          autoStart = true; # default: false
+          environment = {
+            USE_LAYER_SHELL = 1;
+          };
+        };
+      };
+
       services.swww.enable = true;
       programs.niri = {
               package = pkgs.niri-stable;
@@ -41,12 +56,11 @@
                   spawn-at-startup = [
                     { argv = [ "swww-daemon" ]; }
                     { argv = [ "waybar" ]; }
-                    # { argv = [ "xremap" "~/.config/xremap/config.yaml" "--device" "/dev/input/event2" "--device" "/dev/input/event3" ]; }
                   ];
                   input = {
                       keyboard.xkb = {
                           layout = "us,es";
-                          options = "grp:win_space_toggle";
+                          options = "grp:shifts_toggle ";
                       };
                       touchpad = {
                         # accel-profile = "adaptive";
@@ -90,7 +104,7 @@
                       "${mod}+Return".action.spawn = "${pkgs.kitty}/bin/kitty";
                       "${mod}+Shift+E".action.spawn = "${pkgs.wlogout}/bin/wlogout";
                       "${mod}+Shift+Q".action.close-window = {};
-                      "${mod}+Space".action.spawn = [ "${pkgs.wofi}/bin/wofi" "--show" "drun" "-Ibm" "-W" "576" ];
+                      "${mod}+Space".action.spawn = [ "${pkgs.vicinae}/bin/vicinae" "open" ];
                       "${mod}+V".action.toggle-window-floating = {};
 
 # movement

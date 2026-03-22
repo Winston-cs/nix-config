@@ -34,9 +34,20 @@
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nixvim.url = "github:blank2121/nixvim";
         stylix.url = "github:danth/stylix";
+        vicinae.url = "github:vicinaehq/vicinae";
         xremap-flake.url = "github:xremap/nix-flake";
         zen-browser.inputs.nixpkgs.follows = "nixpkgs";
         zen-browser.inputs.home-manager.follows = "home-manager";
         zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    };
+
+    nixConfig = {
+        extra-substituters = [            
+            "https://vicinae.cachix.org"
+        ];
+
+        extra-trusted-public-keys = [
+            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        ];
     };
 }

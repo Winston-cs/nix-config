@@ -21,7 +21,10 @@
 					jack.enable = true;
 				};
 
-				environment.systemPackages = [ pkgs.alsa-utils ];
+				environment.systemPackages = with pkgs; [
+					alsa-utils
+					playerctl
+				];
 
 				users.users.${host.username}.extraGroups = [ "audio" ];
 			};

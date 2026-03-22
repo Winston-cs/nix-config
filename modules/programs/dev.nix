@@ -80,6 +80,7 @@
             enable = true;
             enableZshIntegration = true;
           };
+          television.enable = true;             
           zed-editor.enable = true;
           zoxide = {
             enable = true;
@@ -96,7 +97,6 @@
       tags = [ "dev" ];
       packages = [
             "jjui"
-            "jj-fzf"
             "godot"
             "bacon"
             "bat"
@@ -106,7 +106,6 @@
             "dua"
             "elan"
             "fd"
-            "fzf"
             "gcc"
             "ghc"
             "glow"

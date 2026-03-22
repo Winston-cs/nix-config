@@ -13,7 +13,7 @@
 		core = {
 			tags = [ "core" ];
 
-			nixos = { host, ... }: {
+			nixos = { pkgs, host, ... }: {
         	time.timeZone = "America/New_York";
         	i18n.defaultLocale = "en_US.UTF-8";
         	networking.networkmanager.enable = true;
@@ -66,6 +66,12 @@
       			syntaxHighlighting.enable = true;
       			envExtra = extra;
       		};
+
+      		home.packages = with pkgs; [
+      			wifitui
+      			git
+      			# helix
+      		];
       };
 		};
 
