@@ -11,16 +11,15 @@
         programs = {
           carapace = {
             enable = true;
-            enableZshIntegration = true;
+            enableNushellIntegration = true;
           };
           eza = {
             enable = true;
             icons = "auto";
-            enableZshIntegration = true;
+            enableNushellIntegration = true;
           };
           fzf = {
             enable = true;
-            enableZshIntegration = true;
           };
           git.enable = true;
           helix = {
@@ -78,13 +77,22 @@
           ripgrep.enable = true;
           starship = {
             enable = true;
-            enableZshIntegration = true;
+            enableNushellIntegration = true;
           };
-          television.enable = true;             
+          television = {
+            enable = true;             
+      			settings = {
+				      shell_integration.channel_triggers = {
+				        "files" = [ "cat" "less" "head" "tail" "vim" "nvim" "bat" "cp" "mv" ];
+				        "dirs"  = [ "cd" "ls" "rmdir" "z" ];
+				        "env"   = [ "export" "unset" ];
+				      };
+				    };
+          };
           zed-editor.enable = true;
           zoxide = {
             enable = true;
-            enableZshIntegration = true;
+            enableNushellIntegration = true;
           };
         };
       };
@@ -102,6 +110,7 @@
             "bat"
             "btop"
             "btrfs-progs"
+            "bun"
             "dust"
             "dua"
             "elan"
@@ -122,7 +131,6 @@
             "mprocs"
             "nix-output-monitor"
             "nmap"
-            "nodejs_20"
             "openjdk"
             "openssl_3"
             "pandoc"

@@ -18,6 +18,7 @@
                 dev = true; # enable 
                 academic = true;
                 media = true;
+                muc = true;
                 efi = true;
                 laptop = true;
                 tailscale = true;
