@@ -15,7 +15,7 @@ in {
 
         home-manager.users.${username}.home.packages = with pkgs; [
             mangohud
-            protonup
+            protonup-ng
         ];
 
         environment.sessionVariables = {

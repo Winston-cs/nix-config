@@ -1,6 +1,7 @@
 { ... }:
 {
     imports = [
+        ./cosmic.nix
         ./niri.nix
         ./hyprland.nix
         ./logins.nix
