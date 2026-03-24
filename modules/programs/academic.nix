@@ -8,9 +8,13 @@
 
     nixpkgs.packages.unfree = [ "zoom" "zoom-us" "obsidian" ];
 
+    nixos = { ... }: {
+      networking.firewall.allowedTCPPorts = [ 27123 27124 ];
+    };
+
     home = { pkgs, ... }: {
       home.packages = with pkgs; [
-        libreoffice
+        onlyoffice-desktopeditors
         obsidian
         thunderbird
         zoom-us

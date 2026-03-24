@@ -4,5 +4,4 @@
 ## Todos i guess:
 
 - [ ] implement yggdrasil
-- [ ] implement searxng
 - [ ] implement I2P

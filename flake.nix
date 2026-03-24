@@ -28,15 +28,34 @@
         import-tree.url = "github:vic/import-tree";
         nix-config-modules.url = "github:chadac/nix-config-modules";
         nixos-hardware.url = "github:Nixos/nixos-hardware/master";
-
+        noctalia = {
+          url = "github:noctalia-dev/noctalia-shell";
+          inputs.nixpkgs.follows = "nixpkgs";
+          inputs.noctalia-qs.follows = "noctalia-qs";
+        };
+        noctalia-qs = {
+          url = "github:noctalia-dev/noctalia-qs";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
         copyparty.url = "github:9001/copyparty";
         niri.url = "github:sodiboo/niri-flake";
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nixvim.url = "github:blank2121/nixvim";
         stylix.url = "github:danth/stylix";
+        vicinae.url = "github:vicinaehq/vicinae";
         xremap-flake.url = "github:xremap/nix-flake";
         zen-browser.inputs.nixpkgs.follows = "nixpkgs";
         zen-browser.inputs.home-manager.follows = "home-manager";
         zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    };
+
+    nixConfig = {
+        extra-substituters = [            
+            "https://vicinae.cachix.org"
+        ];
+
+        extra-trusted-public-keys = [
+            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        ];
     };
 }

@@ -1,8 +1,8 @@
 { inputs, ... }:
 {  
-    # nix-config.modules.nixos = [
-    #   inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402x-amdgpu
-    # ];
+    nix-config.modules.nixos = [
+      inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402x-amdgpu
+    ];
 
     nix-config.hosts = {
         rog = {
@@ -14,12 +14,13 @@
             email = "winstonwalter07@gmail.com";
             homeDirectory = "/home/winston";
             tags = {
-                academic = true;
+                niri = true; # enable niri and other things like xremap, etc
                 dev = true; # enable 
+                academic = true;
+                media = true;
+                muc = true;
                 efi = true;
                 laptop = true;
-                media = true;
-                niri = true; # enable niri and other things like xremap, etc
                 tailscale = true;
             };
         };

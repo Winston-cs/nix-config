@@ -32,6 +32,10 @@
 			      };
 			    };
 			};
+
+			home = { ... }: {
+				services.batsignal.enable = true;
+			};
 		};
 	};
 }
