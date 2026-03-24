@@ -10,6 +10,14 @@
   nix-config.apps.games = {
     tags = [ "games" ];
 
+    nixpkgs.packages.unfree = [
+      "lunarclient"
+      "steam"
+      "prismlauncher"
+      "steam-unwrapped"
+      "vesktop"
+    ];
+
     nixos = { host, ... }: {
       programs = {
         steam.enable = true;
@@ -27,7 +35,8 @@
         prismlauncher
         lunar-client
         mangohud
-        protonup
+        vesktop
+        protonup-ng
       ];
     };
   };

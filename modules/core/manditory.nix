@@ -72,13 +72,9 @@
 		grub = {
 			tags = [ "grub" ];
 
-			nixos = { ... }: {
+			nixos = { lib, ... }: {
 				boot.loader = {
 					grub.enable = true;
-					grub.splashImage = builtins.fetchurl {
-						url = "https://w.wallhaven.cc/full/1q/wallhaven-1qqm13.jpg";
-						sha256 = "0sp04swhnwk2zrzfpf64cskr1qv85p50mcldh928l7sph95pffap";
-					};
 				};
 			};
 		};
