@@ -15,6 +15,7 @@
             homeDirectory = "/home/winston";
             tags = {
                 niri = true; # enable niri and other things like xremap, etc
+                xremap = true;
                 dev = true; # enable 
                 academic = true;
                 media = true;
@@ -22,6 +23,9 @@
                 efi = true;
                 laptop = true;
                 tailscale = true;
+                yggdrasil = true;
+                i2p = true;
+                virtualization = true;
             };
         };
     };

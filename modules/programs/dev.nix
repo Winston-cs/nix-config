@@ -7,6 +7,10 @@
     gui-code = {
       tags = [ "dev" ];
 
+      nixos = { host, pkgs, ... }: {
+        users.users.${host.username}.shell = pkgs.nushell;
+      };
+
       home = { pkgs, host, ... }: {
         programs = {
           carapace = {

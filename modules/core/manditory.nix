@@ -13,13 +13,12 @@
 		core = {
 			tags = [ "core" ];
 
-			nixos = { pkgs, host, ... }: {
+			nixos = { host, ... }: {
         	time.timeZone = "America/New_York";
         	i18n.defaultLocale = "en_US.UTF-8";
         	networking.networkmanager.enable = true;
         	users.users.${host.username} = {
         		extraGroups = [ "wheel" "networkmanager" ];       		
-	        	shell = pkgs.nushell;
         	};
       };
 
@@ -146,6 +145,7 @@
       			wifitui
       			git
       			nushell
+      			bitwarden-cli
       			# helix
       		];
       };

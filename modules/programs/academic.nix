@@ -20,6 +20,7 @@
         zoom-us
         zotero
         sioyek
+        ocrs
       ];
     };
   };  
