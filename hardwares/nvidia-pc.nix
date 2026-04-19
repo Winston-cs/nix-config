@@ -1,4 +1,4 @@
-{ modulesPath, lib, config, ... }:
+{ modulesPath, lib, config, pkgs, ... }:
 {
 
   imports =
@@ -7,7 +7,8 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "iwlwifi" ];
+  boot.kernelParams = [ "pcie_aspm=off" "iwlwifi.power_save=0" ];
   boot.extraModulePackages = [ ];
 
   # Bootloader.
@@ -37,6 +38,8 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [ pkgs.linux-firmware ];
 
   # drivers and stuff
 

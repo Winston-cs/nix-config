@@ -25,6 +25,8 @@
         gamemode.enable = true;
       };
 
+      services.ratbagd.enable = true;
+
       environment.sessionVariables = {
         STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${host.homeDirectory}/.steam/root/compatibilitytools.d";
       };
@@ -37,6 +39,7 @@
         mangohud
         vesktop
         protonup-ng
+        piper
       ];
     };
   };

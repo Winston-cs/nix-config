@@ -18,6 +18,7 @@
               games = true;
               wacom = true;
               yggdrasil = true;
+              muc = true;
           };
       };  
   };
